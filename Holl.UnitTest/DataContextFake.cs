@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Holl.UnitTest
 {
 
-    internal class DataContextFake : IDataContext
+    internal class DataContextFake 
     {
         public List<Orders> OrdersList { get; set; }
 

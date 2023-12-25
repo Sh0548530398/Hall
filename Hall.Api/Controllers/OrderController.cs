@@ -13,16 +13,10 @@ namespace Hall.Api.Controllers
 
         private readonly IOrderService _orderService;
 
-        public global::Holl.UnitTest.DataContextFake Context { get; }
 
         public OrderController(IOrderService orderService)
         {
             _orderService = orderService;
-        }
-
-        public OrderController(global::Holl.UnitTest.DataContextFake context)
-        {
-            Context = context;
         }
 
         // GET: api/<CameramanController>

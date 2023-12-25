@@ -20,7 +20,7 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IPhotoRepository, PhotoRepository>();
 builder.Services.AddScoped<IPhotoService, PhotoService>();
-builder.Services.AddSingleton<IDataContext,DataContext>();
+builder.Services.AddDbContext<DataContext>();
 
 
 

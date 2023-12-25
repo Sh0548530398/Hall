@@ -11,19 +11,19 @@ namespace Hall.Data.Repositories
 {
     public class CameraRepository:ICameraRepository
     {
-        private static int i = 3;
-        private readonly IDataContext _context;
-        public CameraRepository(IDataContext context)
+        private static int i = 0;
+        private readonly DataContext _context;
+        public CameraRepository(DataContext context)
         {
             _context = context;
         }
         public List<Cameraman> GetAllList()
         {
-            return _context.CameramanList;
+            return _context.CameramanList.ToList();
         }
         public Cameraman GetById(int id)
         {
-            return _context.CameramanList.Find(c => c.Id == id);
+            return _context.CameramanList.ToList().Find(c => c.Id == id);
         }
         public void PostCameraman(Cameraman value)
         {
@@ -31,7 +31,7 @@ namespace Hall.Data.Repositories
         }
         public bool PutCameraman(int id, Cameraman value)
         {
-            var exist = _context.CameramanList.Find(c => c.Id == id);
+            var exist = _context.CameramanList.ToList().Find(c => c.Id == id);
             if (exist == null)
             {
                 return false;
@@ -42,7 +42,7 @@ namespace Hall.Data.Repositories
         }
         public bool DeleatCameraman(int id)
         {
-            var delete = _context.CameramanList.Find(c => c.Id == id);
+            var delete = _context.CameramanList.ToList().Find(c => c.Id == id);
             if (delete == null)
             {
                 return false;

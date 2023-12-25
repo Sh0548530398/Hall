@@ -11,20 +11,20 @@ namespace Hall.Data.Repositories
 {
     public class PhotoRepository:IPhotoRepository
     {
-        private static int i = 3;
+        private static int i = 0;
 
-        private readonly IDataContext _context;
-        public PhotoRepository(IDataContext context)
+        private readonly DataContext _context;
+        public PhotoRepository(DataContext context)
         {
             _context = context;
         }
         public List<Photographer> GetAllList()
         {
-            return _context.PhotographersList;
+            return _context.PhotographersList.ToList();
         }
         public Photographer GetById(int id)
         {
-            return _context.PhotographersList.Find(c => c.Id == id);
+            return _context.PhotographersList.ToList().Find(c => c.Id == id);
         }
         public void PostPhotographer(Photographer value)
         {
@@ -32,7 +32,7 @@ namespace Hall.Data.Repositories
         }
         public bool PutPhotographer(int id, Photographer value)
         {
-            var exist = _context.PhotographersList.Find(c => c.Id == id);
+            var exist = _context.PhotographersList.ToList().Find(c => c.Id == id);
             if (exist == null)
             {
                 return false;
@@ -43,7 +43,7 @@ namespace Hall.Data.Repositories
         }
         public bool DeleatPhotographer(int id)
         {
-            var delete = _context.PhotographersList.Find(c => c.Id == id);
+            var delete = _context.PhotographersList.ToList().Find(c => c.Id == id);
             if (delete == null)
             {
                 return false;

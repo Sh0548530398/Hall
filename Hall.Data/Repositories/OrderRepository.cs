@@ -11,19 +11,19 @@ namespace Hall.Data.Repositories
 {
     public class OrderRepository:IOrderRepository
     {
-        private static int i = 3;
-        private readonly IDataContext _context;
-        public OrderRepository(IDataContext context)
+        private static int i = 0;
+        private readonly DataContext _context;
+        public OrderRepository(DataContext context)
         {
             _context = context;
         }
         public List<Orders> GetAllList()
         {
-            return _context.OrdersList;
+            return _context.OrdersList.ToList();
         }
         public Orders GetById(int id)
         {
-            return _context.OrdersList.Find(c => c.Id == id);
+            return _context.OrdersList.ToList().Find(c => c.Id == id);
         }
         public void PostOrders(Orders value)
         {
@@ -31,7 +31,7 @@ namespace Hall.Data.Repositories
         }
         public bool PutOrders(int id, Orders value)
         {
-            var exist = _context.OrdersList.Find(c => c.Id == id);
+            var exist = _context.OrdersList.ToList().Find(c => c.Id == id);
             if (exist == null)
             {
                 return false;
@@ -44,7 +44,7 @@ namespace Hall.Data.Repositories
         }
         public bool DeleatOrders(int id)
         {
-            var delete = _context.OrdersList.Find(c => c.Id == id);
+            var delete = _context.OrdersList.ToList().Find(c => c.Id == id);
             if (delete == null)
             {
                 return false;
